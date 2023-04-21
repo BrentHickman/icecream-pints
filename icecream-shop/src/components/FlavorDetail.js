@@ -11,13 +11,15 @@ function FlavorDetail(props){
       <p>About: <em>{flavor.description}</em></p>
       <p>Type: <em>{flavor.type}</em></p>
       <p><em>Available in stock: {flavor.quantity}</em></p>
+      <button onClick={ props.onClickingEdit }>Update Flavor</button>
       <hr/>
     </React.Fragment>
   );
 }
 
 FlavorDetail.propTypes = {
-  flavor: PropTypes.object
+  flavor: PropTypes.object,
+  onClickingEdit: PropTypes.func
 };
 
 export default FlavorDetail;

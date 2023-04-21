@@ -2,6 +2,7 @@ import React from 'react';
 import NewFlavorForm from './NewFlavorForm';
 import FlavorList from './FlavorList';
 import FlavorDetail from './FlavorDetail';
+import EditFlavorForm from './EditFlavorForm';
 
 class ShopControl extends React.Component {
 
@@ -10,7 +11,8 @@ class ShopControl extends React.Component {
     this.state = {
       formVisibleOnPage: false,
       mainFlavorList: [],
-      selectedFlavor: null
+      selectedFlavor: null,
+      editing: false
     };
   }
   
@@ -18,7 +20,8 @@ class ShopControl extends React.Component {
     if (this.state.selectedFlavor != null) {
       this.setState({
         formVisibleOnPage: false,
-        selectedFlavor: null
+        selectedFlavor: null,
+        editing: false
       });
     } else {
       this.setState(prevState => ({
@@ -39,18 +42,40 @@ class ShopControl extends React.Component {
     this.setState({selectedFlavor: selectedFlavor});
   }
 
+  handleEditClick = () => {
+    this.setState({editing: true});
+  }
+
+  handleEditingFlavorInList = (flavorToEdit) => {
+    const editedMainFlavorList = this.state.mainFlavorList
+      .filter(flavor => flavor.id !== this.state.selectedFlavor.id)
+      .concat(flavorToEdit);
+    this.setState({
+        mainFlavorList: editedMainFlavorList,
+        editing: false,
+        selectedFlavor: null
+      });
+  }
+
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.state.selectedFlavor != null) {
-      currentlyVisibleState = <FlavorDetail flavor = {this.state.selectedFlavor} />
+    if (this.state.editing ) {      
+      currentlyVisibleState = <EditFlavorForm flavor = {this.state.selectedFlavor} onEditFlavor = {this.handleEditingFlavorInList} />
+      buttonText = "Return to Flavor List";
+    }
+    else if (this.state.selectedFlavor != null) {
+      currentlyVisibleState = <FlavorDetail flavor = {this.state.selectedFlavor} onClickingEdit={this.handleEditClick}/>
       buttonText = "Return to Flavor List";
     }
     else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = <NewFlavorForm onNewFlavorCreation={this.handleAddingNewFlavorToList} /> ;
       buttonText = "Return to Flavor List";
     } else {
-      currentlyVisibleState = <FlavorList flavorList={this.state.mainFlavorList} onFlavorSelection={this.handleChangingSelectedFlavor} onRestock={this.restock} />;
+      currentlyVisibleState = <FlavorList flavorList={this.state.mainFlavorList} 
+      onFlavorSelection={this.handleChangingSelectedFlavor} 
+      // onRestock={this.restock}
+      onClickingEdit = {this.handleEditClick}  />;
       buttonText = "Add Flavor";
     }
     return (
