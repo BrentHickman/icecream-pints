@@ -1,9 +1,12 @@
 import React from 'react';
+import Header from './Header';
+import ShopControl from './ShopControl';
 
 function App() {
   return (
     <React.Fragment>
-      <h1>ICECREAM BY THE PINT</h1>
+      <Header />
+      <ShopControl />
     </React.Fragment>
   );
 }
