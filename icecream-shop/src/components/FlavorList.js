@@ -24,6 +24,7 @@ function FlavorList(props) {
 FlavorList.propTypes = {
   flavorList: PropTypes.array,
   onFlavorSelection: PropTypes.func,
+  flavor: PropTypes.object
 };
 
 export default FlavorList;

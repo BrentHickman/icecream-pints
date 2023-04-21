@@ -8,7 +8,13 @@ function EditFlavorForm (props) {
 
   function handleEditFlavorFormSubmission(event) {
     event.preventDefault();
-    props.onEditFlavor({name: event.target.name.value, price: event.target.price.value, description: event.target.description.value, quantity: event.target.quantity.value, id: flavor.id});
+    props.onEditFlavor({
+      name: event.target.name.value, 
+      price: parseFloat(event.target.price.value), 
+      description: event.target.description.value, 
+      type: event.target.type.value, 
+      quantity: parseInt(event.target.quantity.value), 
+      id: flavor.id});
   }
   return (
     <React.Fragment>

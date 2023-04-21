@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { v4 } from 'uuid';
-import ReusableForm from "./ReusableForm";
 
 function NewFlavorForm(props) {
 
@@ -9,24 +8,45 @@ function NewFlavorForm(props) {
     event.preventDefault();
     props.onNewFlavorCreation({
       name: event.target.name.value,
-      price: event.target.price.value,
+      price: parseFloat(event.target.price.value),
       description: event.target.description.value,
       type: event.target.type.value,
-      quantity: event.target.quantity.value,
+      quantity: parseInt(event.target.quantity.value),
       id: v4()
     });
   }
   return (
     <React.Fragment>
-        <ReusableForm 
-        formSubmissionHandler={handleNewFlavorFormSubmission}
-        buttonText="Add to Menu" />
+      <form onSubmit={handleNewFlavorFormSubmission}>
+        <p>Flavor:  
+        <input
+          type='text'
+          name='name'
+          placeholder='Name of Flavor' /><br></br></p>
+        <input
+          type='number'
+          step='0.01'
+          name='price'
+          placeholder='Price' /><br></br>
+        <input
+          type='text'
+          name='type'
+          placeholder='Type' /><br></br>
+        <textarea
+          name='description'
+          placeholder='Description' /><br></br>
+        <input
+          type='number'
+          name='quantity'
+          placeholder='Quantity' /><br></br>
+        <button type='submit'>Add Flavor</button>
+      </form>
     </React.Fragment>
   );
 }
 
 NewFlavorForm.propTypes = {
-  onNewFlavorCreation: PropTypes.func
+  onNewFlavorCreation: PropTypes.func,
 };
 
 export default NewFlavorForm;

@@ -6,7 +6,7 @@ function Flavor(props) {
 
   return (
     <React.Fragment>
-      <div onClick={() => props.whenFlavorClicked(props.id)}>
+      <div onClick={() => props.whenFlavorClicked(props.id, props.type)}>
         <h3><em>{props.name} - ${props.price}</em></h3>
         <p>Left in stock: {props.quantity} pints</p>
         <hr />

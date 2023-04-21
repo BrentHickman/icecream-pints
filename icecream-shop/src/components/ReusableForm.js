@@ -12,6 +12,7 @@ function ReusableForm(props) {
           placeholder='Name of Flavor' /><br></br></p>
         <input
           type='number'
+          step='0.01'
           name='price'
           placeholder='Price' /><br></br>
         <input
@@ -33,6 +34,7 @@ function ReusableForm(props) {
 
 ReusableForm.propTypes = {
   formSubmissionHandler: PropTypes.func,
+  flavor: PropTypes.object,
   buttonText: PropTypes.string
 };
 

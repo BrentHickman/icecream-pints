@@ -3,6 +3,7 @@ import NewFlavorForm from './NewFlavorForm';
 import FlavorList from './FlavorList';
 import FlavorDetail from './FlavorDetail';
 import EditFlavorForm from './EditFlavorForm';
+import PropTypes from "prop-types";
 
 class ShopControl extends React.Component {
 
@@ -34,7 +35,7 @@ class ShopControl extends React.Component {
     const newMainFlavorList = this.state.mainFlavorList.concat(newFlavor);
     this.setState({mainFlavorList: newMainFlavorList,
                   formVisibleOnPage: false });
-  }
+    }
 
 
   handleChangingSelectedFlavor = (id) => {
@@ -87,5 +88,8 @@ class ShopControl extends React.Component {
   }
 
 }
+ShopControl.propTypes = {
+  flavor: PropTypes.object,
+};
 
 export default ShopControl;
