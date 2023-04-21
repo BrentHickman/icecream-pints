@@ -58,6 +58,12 @@ class ShopControl extends React.Component {
       });
   }
 
+  sell = (inputId) => {
+    let newSellFlavorList = this.state.mainFlavorList;
+    newSellFlavorList.filter(flavor => flavor.id === inputId)[0].quantity--;
+    this.setState({mainFlavorList: newSellFlavorList, formVisibleOnPage: false});
+  }
+
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
@@ -75,7 +81,7 @@ class ShopControl extends React.Component {
     } else {
       currentlyVisibleState = <FlavorList flavorList={this.state.mainFlavorList} 
       onFlavorSelection={this.handleChangingSelectedFlavor} 
-      // onRestock={this.restock}
+      onSell={this.sell}
       onClickingEdit = {this.handleEditClick}  />;
       buttonText = "Add Flavor";
     }
