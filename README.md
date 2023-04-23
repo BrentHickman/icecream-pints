@@ -1,2 +1,2 @@
 # ICE CREAM SHOP
-![Component Diagram](ice_cream_shop_diagram.png)
+![Component Diagram](./icecream-shop/src/img/Ice_cream_shop%20diagram.png)
