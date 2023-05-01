@@ -3,18 +3,31 @@ import PropTypes from "prop-types";
 
 
 function Flavor(props) {
+  if (props.quantity > 0) {
+    return (
+      <React.Fragment>
+        <div onClick={() => props.whenFlavorClicked(props.id, props.type)}>
+          <h3><em>{props.name} - ${props.price}</em></h3>
+          <p>Left in stock: {props.quantity} pints</p>
+          <hr />
+        </div>
+        <button onClick={() => props.whenSellClicked(props.id)} type="submit">Sell one Pint</button><span>   </span>
 
-  return (
-    <React.Fragment>
-      <div onClick={() => props.whenFlavorClicked(props.id, props.type)}>
-        <h3><em>{props.name} - ${props.price}</em></h3>
-        <p>Left in stock: {props.quantity} pints</p>
-        <hr />
-      </div>
-      <button onClick={() => props.whenSellClicked(props.id)} type="submit">Sell one Pint</button><span>   </span>
+      </React.Fragment>
+    );
+  } else {
+    return (
+      <React.Fragment>
+        <div onClick={() => props.whenFlavorClicked(props.id, props.type)}>
+          <h3><em>{props.name} - ${props.price}</em></h3>
+          <p>Out of Stock</p>
+          <hr />
+        </div>
+        <span>   </span>
 
-    </React.Fragment>
-  );
+      </React.Fragment>
+    );
+  }
 }
 
 Flavor.propTypes = { //name, price, desc, type, quantity

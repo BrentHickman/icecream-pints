@@ -63,7 +63,7 @@ class ShopControl extends React.Component {
     if(newSellFlavorList.filter(flavor => flavor.id === inputId)[0].quantity >= 2){
     newSellFlavorList.filter(flavor => flavor.id === inputId)[0].quantity--;}
     else{
-      newSellFlavorList.filter(flavor => flavor.id === inputId)[0].quantity = "Out of";
+      newSellFlavorList.filter(flavor => flavor.id === inputId)[0].quantity = 0;
     }
     this.setState({mainFlavorList: newSellFlavorList, formVisibleOnPage: false});
   }

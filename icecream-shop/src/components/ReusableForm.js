@@ -12,6 +12,7 @@ function ReusableForm(props) {
           placeholder='Name of Flavor' /><br></br></p>
         <input
           type='number'
+          min='0.01'
           step='0.01'
           name='price'
           placeholder='Price' /><br></br>
@@ -25,6 +26,7 @@ function ReusableForm(props) {
         <input
           type='number'
           name='quantity'
+          min='0'
           placeholder='Quantity' /><br></br>
         <button type='submit'>{props.buttonText}</button>
       </form>
